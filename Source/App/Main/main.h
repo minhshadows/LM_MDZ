@@ -20,7 +20,6 @@
 #include "Source/App/Receive/received.h"
 #include "Source/Hardd/TEMP_HUM/temp_hum.h"
 #include "Source/Hardd/LM/lightsensor.h"
-#include "Source/Hardd/LM/lightsensor2.h"
 #include "Source/Hardd/PIR/pir.h"
 #include "Source/Hardd/BAT/bat.h"
 

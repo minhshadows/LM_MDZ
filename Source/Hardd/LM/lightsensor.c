@@ -17,6 +17,12 @@ uint8_t light_sensor_rxBuffer[10];
 
 static uint16_t Opt3001_CorrectionPlasticCover (uint16_t data);
 
+/*
+ * @func	light_sensor_Init
+ * @brief	Initialize OPT3001 light sensor
+ * @param	None
+ * @retval	None
+ */
 void light_sensor_Init()
 {
 	I2C_Init_TypeDef i2c_struct = I2C_INIT_DEFAULT;
@@ -49,6 +55,17 @@ void light_sensor_Init()
 	I2C_Enable(I2C0, 1);
 	OPT3001_Write_Data();
 //	LM_I2C_DeInit();
+}
+
+/*
+ * @func	LM_I2C_DeInit
+ * @brief	Deinit sensor
+ * @param	None
+ * @retval	None
+ */
+void LM_I2C_DeInit(void) {
+	GPIO_PinModeSet(LIGHT_SENSOR_PORT, LIGHT_SENSOR_SCL_PIN, gpioModeDisabled, 0);
+	GPIO_PinModeSet(LIGHT_SENSOR_PORT, LIGHT_SENSOR_SDA_PIN, gpioModeDisabled, 0);
 }
 
 /*
@@ -138,7 +155,6 @@ uint16_t OPT3001_GetValue()
 
 	// calib data
 	lux=Opt3001_CorrectionPlasticCover(lux);
-	emberAfCorePrintln("Lux = %d ",lux);
 	return (uint16_t)lux;
 }
 

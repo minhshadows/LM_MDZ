@@ -23,11 +23,10 @@
 
 
 void light_sensor_Init();
+void LM_I2C_DeInit();
 void OPT3001_Write_Data();
 void OPT3001_Read_Data(uint8_t address, uint8_t cmd, uint8_t *rxBuff,uint8_t length);
 uint16_t OPT3001_GetValue();
-//void read_data();
-
 
 #endif /* SOURCE_HARDD_LM_LIGHTSENSOR_H_ */
 

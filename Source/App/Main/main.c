@@ -46,16 +46,11 @@ void emberAfMainInitCallback(void)
 	turnOnLed(LED1,ledRed);
 	TempHum_Init();
 //	adc_Initt();
-//	light_sensor_Init();
-//	if (Opt3001_CheckInit() != true) {
-//		emberAfCorePrintln("OPT3001 error");
-//	}
-//	Opt3001_MeasureLux();
-	emberEventControlSetDelayMS(TempHumEventControl,3000);
+	light_sensor_Init();
+//	emberEventControlSetDelayMS(TempHumEventControl,3000);
 	pirInit(USER_pirHardHandle);
 	systemState = POWER_ON_STATE;
 	emberEventControlSetActive(mainStateEventControl);
-	fristSend();
 }
 
 /**
@@ -89,6 +84,8 @@ void mainStateEventHandle()
 		networkReady = true;
 		systemState = IDLE_STATE;
 		SEND_ReportInfoToHc();
+		// gửi thông số môi trường lên HC
+		fristSend();
 		break;
 	case IDLE_STATE:
 		break;
@@ -131,6 +128,7 @@ void userNETWORK_EventHandle(uint8_t networkResult)
 		break;
 	case NETWORK_JOIN_SUCCESS:
 		emberAfCorePrintln("Join Success!!!");
+		toggleLed(LED1,ledBlue,3,300,300);
 		networkReady = true;
 		systemState = REPORT_STATE;
 		emberEventControlSetDelayMS(mainStateEventControl,1000);
@@ -190,7 +188,7 @@ void userButton_PressAndHoldEventHandle(uint8_t button, uint8_t pressAndHoldEven
 				emberEventControlSetActive(mainStateEventControl);
 			}
 			break;
-		case press_3:// target find
+		case press_3:
 			emberAfCorePrintln("press_3!!!");
 			if(systemState == SETTING_STATE)
 			{
@@ -199,12 +197,12 @@ void userButton_PressAndHoldEventHandle(uint8_t button, uint8_t pressAndHoldEven
 				emberEventControlSetActive(mainStateEventControl);
 			}
 			break;
-		case press_4:// initiator find
+		case press_4:
 			emberAfCorePrintln("press_4!!!");
 			break;
 		case press_5:
 			emberAfCorePrintln("press_5!!!");
-//			NETWORK_Leave();
+			NETWORK_Leave();
 			break;
 		case unknown:
 			break;
@@ -237,10 +235,10 @@ void userButton_HoldingEventHandle(uint8_t button, BUTTON_Event_t holdingEvent)
 		case hold_2s:
 			emberAfCorePrintln("hold_2s!!!");
 			break;
-		case hold_3s:// target find
+		case hold_3s:
 			emberAfCorePrintln("hold_3s!!!");
 			break;
-		case hold_4s:// initiator find
+		case hold_4s:
 			emberAfCorePrintln("hold_4s!!!");
 			break;
 		case hold_5s:
@@ -355,7 +353,7 @@ void checkTemperatureValue_toSend()
 void checkHumidityValue_toSend()
 {
 	uint8_t humidity = TemHumSensor_getHumidity();
-
+	TempHum_Init();
 	if (humidity > humidityPrev)
 	{
 		if((humidity - humidityPrev) >= 2)
@@ -363,7 +361,6 @@ void checkHumidityValue_toSend()
 			//send humi
 			humidityPrev = humidity;
 			SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
-			emberAfCorePrintln("send 1111!!!");
 		}
 	}
 	else if(humidity < humidityPrev)
@@ -373,7 +370,6 @@ void checkHumidityValue_toSend()
 			//send humi
 			humidityPrev = humidity;
 			SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
-			emberAfCorePrintln("send 2222!!!");
 		}
 	}
 	emberAfCorePrintln("humidity = %d %%!!!",humidity);
@@ -390,6 +386,7 @@ void checkHumidityValue_toSend()
  */
 void checkLightValue_toSend()
 {
+//	light_sensor_Init();
 	uint16_t lux = OPT3001_GetValue();
 
 	if (lux > luxPrev)
@@ -410,7 +407,8 @@ void checkLightValue_toSend()
 			SEND_measuredValueReport(LIGHTSENSOR_ENDPOINT,lux);
 		}
 	}
-	emberAfCorePrintln("humidity = %d %%!!!",humidity);
+	emberAfCorePrintln("lux = %d !!!",lux);
+//	LM_I2C_DeInit();
 }
 
 /**
@@ -426,21 +424,12 @@ void TempHumEventHandler()
 {
 	// First thing to do inside a delay event is to disable the event till next usage
 	emberEventControlSetInactive(TempHumEventControl);
-
+//	TempHum_Init();
 	//Do something
 	emberAfCorePrintln("--------------------------");
 	checkTemperatureValue_toSend();
 	checkHumidityValue_toSend();
 	checkLightValue_toSend();
-//	battery=read_ADCvalue();
-//	emberAfCorePrintln("battery before %d ",battery);
-//	battery = (battery * 3.3) / 4095;
-//	emberAfCorePrintln("battery %d ",battery);
-//	LM_I2C_Init();
-//	Opt3001_MeasureLux();
-//	uint16_t lux = Opt3001_GetLuxVal();
-//	emberAfCorePrintln("lux = %d",lux);
-//	LM_I2C_DeInit();
 	emberAfCorePrintln("--------------------------");
 
 	//Reschedule the event after a delay of 10 seconds
