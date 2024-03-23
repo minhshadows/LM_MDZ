@@ -25,6 +25,7 @@
   extern EmberEventControl joinNetworkEventControl; \
   extern EmberEventControl mainStateEventControl; \
   extern EmberEventControl pirDetechEventControl; \
+  extern EmberEventControl sendAfter30mEventControl; \
   extern void TempHumEventHandler(void); \
   extern void buttonPressAndHoldEventHandle(void); \
   extern void buttonReleaseEventHandle(void); \
@@ -37,6 +38,7 @@
   extern void joinNetworkEventHandle(void); \
   extern void mainStateEventHandle(void); \
   extern void pirDetechEventHandle(void); \
+  extern void sendAfter30mEventHandle(void); \
   static void networkEventWrapper(EmberEventControl *control, EmberAfNetworkEventHandler handler, uint8_t networkIndex) \
   { \
     emberAfPushNetworkIndex(networkIndex); \
@@ -81,6 +83,7 @@
   { &joinNetworkEventControl, joinNetworkEventHandle }, \
   { &mainStateEventControl, mainStateEventHandle }, \
   { &pirDetechEventControl, pirDetechEventHandle }, \
+  { &sendAfter30mEventControl, sendAfter30mEventHandle }, \
   { &emberAfPluginEndDeviceSupportMoveNetworkEventControls[0], emberAfPluginEndDeviceSupportMoveNetworkEventWrapper0 }, \
   { &emberAfPluginEndDeviceSupportPollingNetworkEventControls[0], emberAfPluginEndDeviceSupportPollingNetworkEventWrapper0 }, \
 
@@ -101,6 +104,7 @@
   "Update TC Link Key Plugin BeginTcLinkKeyUpdate",  \
   "Join network event control",  \
   "Main state event control",  \
+  "Pir detech event control",  \
   "Event data",  \
   "End Device Support Plugin Move NWK 0", \
   "End Device Support Plugin Polling NWK 0", \

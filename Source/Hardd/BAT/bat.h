@@ -19,7 +19,7 @@
 #define ADC_BAT_PORT					gpioPortC
 #define ADC_BAT_PIN						(4U)
 
-#define IADC_INPUT_0_PORT_PIN		iadcPosInputPortCPin5
+#define IADC_INPUT_0_PORT_PIN		iadcPosInputPortCPin4
 
 #define IADC_INPUT_0_BUS         	CDBUSALLOC
 #define IADC_INPUT_0_BUSALLOC    	_GPIO_CDBUSALLOC_CDODD0_ADC0

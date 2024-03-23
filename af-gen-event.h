@@ -23,6 +23,7 @@
   extern EmberEventControl emberAfPluginScanDispatchScanEventControl; \
   extern EmberEventControl emberAfPluginUpdateTcLinkKeyBeginTcLinkKeyUpdateEventControl; \
   extern EmberEventControl joinNetworkEventControl; \
+  extern EmberEventControl led1ToggleEventControl; \
   extern EmberEventControl mainStateEventControl; \
   extern EmberEventControl pirDetechEventControl; \
   extern EmberEventControl sendAfter30mEventControl; \
@@ -36,6 +37,7 @@
   extern void emberAfPluginScanDispatchScanEventHandler(void); \
   extern void emberAfPluginUpdateTcLinkKeyBeginTcLinkKeyUpdateEventHandler(void); \
   extern void joinNetworkEventHandle(void); \
+  extern void led1ToggleEventHandle(void); \
   extern void mainStateEventHandle(void); \
   extern void pirDetechEventHandle(void); \
   extern void sendAfter30mEventHandle(void); \
@@ -81,6 +83,7 @@
   { &emberAfPluginScanDispatchScanEventControl, emberAfPluginScanDispatchScanEventHandler }, \
   { &emberAfPluginUpdateTcLinkKeyBeginTcLinkKeyUpdateEventControl, emberAfPluginUpdateTcLinkKeyBeginTcLinkKeyUpdateEventHandler }, \
   { &joinNetworkEventControl, joinNetworkEventHandle }, \
+  { &led1ToggleEventControl, led1ToggleEventHandle }, \
   { &mainStateEventControl, mainStateEventHandle }, \
   { &pirDetechEventControl, pirDetechEventHandle }, \
   { &sendAfter30mEventControl, sendAfter30mEventHandle }, \
@@ -103,9 +106,10 @@
   "Scan Dispatch Plugin Scan",  \
   "Update TC Link Key Plugin BeginTcLinkKeyUpdate",  \
   "Join network event control",  \
+  "Event data",  \
   "Main state event control",  \
   "Pir detech event control",  \
-  "Event data",  \
+  "Send after30m event control",  \
   "End Device Support Plugin Move NWK 0", \
   "End Device Support Plugin Polling NWK 0", \
 

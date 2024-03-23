@@ -58,6 +58,7 @@ buttonReleaseEventControl,buttonReleaseEventHandle
 TempHumEventControl,TempHumEventHandler
 pirDetechEventControl,pirDetechEventHandle
 sendAfter30mEventControl,sendAfter30mEventHandle
+led1ToggleEventControl,led1ToggleEventHandle
 }
 {setupId:halOptions
 }

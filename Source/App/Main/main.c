@@ -14,8 +14,8 @@ void checkTemperatureValue_toSend();
 void checkHumidityValue_toSend();
 void checkLightValue_toSend();
 
-
-void fristSend();
+void sendEnvir_toHC();
+void firstSend();
 
 /** @brief Main Init
  *
@@ -43,11 +43,9 @@ void emberAfMainInitCallback(void)
 	ledInit();
 	buttonInit(userButton_HoldingEventHandle,userButton_PressAndHoldEventHandle);
 	networkInit(userNETWORK_EventHandle);
-	turnOnLed(LED1,ledRed);
 	TempHum_Init();
 //	adc_Initt();
 	light_sensor_Init();
-//	emberEventControlSetDelayMS(TempHumEventControl,3000);
 	pirInit(USER_pirHardHandle);
 	systemState = POWER_ON_STATE;
 	emberEventControlSetActive(mainStateEventControl);
@@ -84,8 +82,7 @@ void mainStateEventHandle()
 		networkReady = true;
 		systemState = IDLE_STATE;
 		SEND_ReportInfoToHc();
-		// gửi thông số môi trường lên HC
-		fristSend();
+		firstSend();
 		break;
 	case IDLE_STATE:
 		break;
@@ -163,7 +160,6 @@ void userNETWORK_EventHandle(uint8_t networkResult)
  *
  * @retval	none
  */
-uint8_t in_1,in_2 = 0;
 void userButton_PressAndHoldEventHandle(uint8_t button, uint8_t pressAndHoldEvent)
 {
 	if (button == SW_1) // for endpoint 1
@@ -177,6 +173,8 @@ void userButton_PressAndHoldEventHandle(uint8_t button, uint8_t pressAndHoldEven
 				systemState = IDLE_STATE;
 				emberEventControlSetActive(mainStateEventControl);
 			}
+			// send environment to HC
+			sendEnvir_toHC();
 			emberAfCorePrintln("press_1!!!");
 			break;
 		case press_2:
@@ -229,33 +227,6 @@ void userButton_HoldingEventHandle(uint8_t button, BUTTON_Event_t holdingEvent)
 	{
 		switch(holdingEvent)
 		{
-		case hold_1s:
-			emberAfCorePrintln("hold_1s!!!");
-			break;
-		case hold_2s:
-			emberAfCorePrintln("hold_2s!!!");
-			break;
-		case hold_3s:
-			emberAfCorePrintln("hold_3s!!!");
-			break;
-		case hold_4s:
-			emberAfCorePrintln("hold_4s!!!");
-			break;
-		case hold_5s:
-			emberAfCorePrintln("hold_5s!!!");
-			break;
-		case hold_6s:
-			emberAfCorePrintln("hold_6s!!!");
-			break;
-		case hold_7s:
-			emberAfCorePrintln("hold_7s!!!");
-			break;
-		case hold_8s:
-			emberAfCorePrintln("hold_8s!!!");
-			break;
-		case hold_9s:
-			emberAfCorePrintln("hold_9s!!!");
-			break;
 		case hold_10s:
 			emberAfCorePrintln("hold_10s!!!");
 			systemState = SETTING_STATE;
@@ -324,7 +295,7 @@ void checkTemperatureValue_toSend()
 			//send temp
 			temperaturePrev = temperature;
 			SEND_temperatureValueReport(TEMPERATURE_ENDPOINT,temperature);
-			emberAfCorePrintln("send!!!");
+			emberAfCorePrintln("send temperature!!!");
 		}
 	}
 	else if(temperature < temperaturePrev)
@@ -334,7 +305,7 @@ void checkTemperatureValue_toSend()
 			//send temp
 			temperaturePrev = temperature;
 			SEND_temperatureValueReport(TEMPERATURE_ENDPOINT,temperature);
-			emberAfCorePrintln("send!!!");
+			emberAfCorePrintln("send temperature!!!");
 		}
 	}
 	emberAfCorePrintln("temperature = %d!!!",temperature);
@@ -353,7 +324,7 @@ void checkTemperatureValue_toSend()
 void checkHumidityValue_toSend()
 {
 	uint8_t humidity = TemHumSensor_getHumidity();
-	TempHum_Init();
+//	TempHum_Init();
 	if (humidity > humidityPrev)
 	{
 		if((humidity - humidityPrev) >= 2)
@@ -361,6 +332,7 @@ void checkHumidityValue_toSend()
 			//send humi
 			humidityPrev = humidity;
 			SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
+			emberAfCorePrintln("send humidity!!!");
 		}
 	}
 	else if(humidity < humidityPrev)
@@ -370,6 +342,7 @@ void checkHumidityValue_toSend()
 			//send humi
 			humidityPrev = humidity;
 			SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
+			emberAfCorePrintln("send humidity!!!");
 		}
 	}
 	emberAfCorePrintln("humidity = %d %%!!!",humidity);
@@ -391,20 +364,22 @@ void checkLightValue_toSend()
 
 	if (lux > luxPrev)
 	{
-		if((lux - luxPrev) >= 100)
+		if((lux - luxPrev) >= 50)
 		{
 			//send humi
 			luxPrev = lux;
 			SEND_measuredValueReport(LIGHTSENSOR_ENDPOINT,lux);
+			emberAfCorePrintln("send lux!!!");
 		}
 	}
 	else if(lux < luxPrev)
 	{
-		if((luxPrev - lux) >= 100)
+		if((luxPrev - lux) >= 50)
 		{
 			//send humi
 			luxPrev = lux;
 			SEND_measuredValueReport(LIGHTSENSOR_ENDPOINT,lux);
+			emberAfCorePrintln("send lux!!!");
 		}
 	}
 	emberAfCorePrintln("lux = %d !!!",lux);
@@ -432,7 +407,7 @@ void TempHumEventHandler()
 	checkLightValue_toSend();
 	emberAfCorePrintln("--------------------------");
 
-	//Reschedule the event after a delay of 10 seconds
+	//Reschedule the event after a delay of 5 seconds
 	emberEventControlSetDelayMS(TempHumEventControl,5000);
 }
 
@@ -445,7 +420,7 @@ void TempHumEventHandler()
  *
  * @retval	none
  */
-void fristSend()
+void firstSend()
 {
 	uint8_t temperature = (TemHumSensor_getTemperature()/100);
 	uint8_t humidity	= TemHumSensor_getHumidity();
@@ -455,6 +430,9 @@ void fristSend()
 	SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
 	SEND_measuredValueReport(LIGHTSENSOR_ENDPOINT,lux);
 
+	emberAfCorePrintln("first send!!!!");
+	// set up to scan every 5s
+	emberEventControlSetDelayMS(TempHumEventControl,5000);
 	//Send every 30m
 	emberEventControlSetDelayMinutes(sendAfter30mEventControl,30);
 }
@@ -480,4 +458,30 @@ void sendAfter30mEventHandle()
 	SEND_measuredValueReport(LIGHTSENSOR_ENDPOINT,lux);
 
 	emberEventControlSetDelayMinutes(sendAfter30mEventControl,30);
+}
+
+/**
+ * @func	sendEnvir_toHC
+ *
+ * @brief	send environment ( use for press 1 time)
+ *
+ * @param	none
+ *
+ * @retval	none
+ */
+void sendEnvir_toHC()
+{
+	uint8_t temperature = (TemHumSensor_getTemperature()/100);
+	uint8_t humidity	= TemHumSensor_getHumidity();
+	uint16_t lux		= OPT3001_GetValue();
+
+	SEND_temperatureValueReport(TEMPERATURE_ENDPOINT,temperature);
+	SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
+	SEND_measuredValueReport(LIGHTSENSOR_ENDPOINT,lux);
+
+	temperaturePrev = temperature ;
+	humidityPrev	= humidity ;
+	luxPrev			= lux ;
+
+	emberAfCorePrintln("Send all to HC");
 }
