@@ -16,6 +16,7 @@ void checkLightValue_toSend();
 
 void sendEnvir_toHC();
 void firstSend();
+void Battery_Scan();
 
 /** @brief Main Init
  *
@@ -44,11 +45,12 @@ void emberAfMainInitCallback(void)
 	buttonInit(userButton_HoldingEventHandle,userButton_PressAndHoldEventHandle);
 	networkInit(userNETWORK_EventHandle);
 	TempHum_Init();
-//	adc_Initt();
+	adc_Initt();
 	light_sensor_Init();
 	pirInit(USER_pirHardHandle);
 	systemState = POWER_ON_STATE;
 	emberEventControlSetActive(mainStateEventControl);
+
 }
 
 /**
@@ -200,6 +202,12 @@ void userButton_PressAndHoldEventHandle(uint8_t button, uint8_t pressAndHoldEven
 			break;
 		case press_5:
 			emberAfCorePrintln("press_5!!!");
+			if(emberNetworkState() == EMBER_NO_NETWORK) // đảm bảo thiết bị không vào mạng vẫn có thể reboot bình thường
+			{
+				toggleLed(LED1,ledRed,3,300,300);
+				systemState = REBOOT_STATE;
+				emberEventControlSetDelayMS(mainStateEventControl,3000);
+			}
 			NETWORK_Leave();
 			break;
 		case unknown:
@@ -405,6 +413,7 @@ void TempHumEventHandler()
 	checkTemperatureValue_toSend();
 	checkHumidityValue_toSend();
 	checkLightValue_toSend();
+	Battery_Scan();
 	emberAfCorePrintln("--------------------------");
 
 	//Reschedule the event after a delay of 5 seconds
@@ -484,4 +493,11 @@ void sendEnvir_toHC()
 	luxPrev			= lux ;
 
 	emberAfCorePrintln("Send all to HC");
+}
+
+void Battery_Scan()
+{
+	uint32_t temp =0;
+	temp = read_ADCvalue();
+	emberAfCorePrintln("Battery = %d",temp);
 }

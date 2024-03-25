@@ -656,6 +656,11 @@
 			<locationURI>STUDIO_SDK_LOC/platform/base/hal/plugin/debug-jtag/debug-jtag-efr32.c</locationURI>
 		</link>
 		<link>
+			<name>generic-interrupt-control/EFR32/generic-interrupt-control-efr32.c</name>
+			<type>1</type>
+			<locationURI>STUDIO_SDK_LOC/util/plugin/plugin-common/generic-interrupt-control/generic-interrupt-control-efr32.c</locationURI>
+		</link>
+		<link>
 			<name>hal-library/EFR32/hal-config-gpio.c</name>
 			<type>1</type>
 			<locationURI>STUDIO_SDK_LOC/platform/base/hal/micro/cortexm3/efm32/hal-config-gpio.c</locationURI>

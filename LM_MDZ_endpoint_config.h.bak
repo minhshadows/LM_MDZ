@@ -158,11 +158,13 @@ const EmberAfGenericClusterFunction emberAfFuncArrayScenesClusterServer[] = { (E
 
 
 #define EMBER_AF_GENERATED_PLUGIN_STACK_STATUS_FUNCTION_DECLARATIONS \
+  void emberAfPluginEndDeviceSupportStackStatusCallback(EmberStatus status); \
   void emberAfPluginReportingStackStatusCallback(EmberStatus status); \
   void emberAfPluginNetworkSteeringStackStatusCallback(EmberStatus status); \
 
 
 #define EMBER_AF_GENERATED_PLUGIN_STACK_STATUS_FUNCTION_CALLS \
+  emberAfPluginEndDeviceSupportStackStatusCallback(status); \
   emberAfPluginReportingStackStatusCallback(status); \
   emberAfPluginNetworkSteeringStackStatusCallback(status); \
 

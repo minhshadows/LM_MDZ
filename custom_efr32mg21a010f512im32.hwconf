@@ -16,6 +16,9 @@
     <property object="PA" propertyId="ABPeripheral.included" value="true"/>
     <property object="PA" propertyId="PA.BSP_PA_VOLTAGE.INT" value="1000"/>
     <property object="PA" propertyId="PA.HAL_PA_SELECTION.ENUM" value="HAL_PA_SELECTION_2P4_MP"/>
+    <property object="PORTIO" propertyId="portio.acmp0.enable.pos" value="Enabled"/>
+    <property object="PORTIO" propertyId="portio.acmp0.location.acmp0_negloc" value="36"/>
+    <property object="PORTIO" propertyId="portio.acmp0.location.acmp0_posloc" value="36"/>
     <property object="PORTIO" propertyId="portio.usart0.enable.rx" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.usart0.enable.tx" value="Enabled"/>
     <property object="PORTIO" propertyId="portio.usart0.location.usart0_rxloc" value="49"/>

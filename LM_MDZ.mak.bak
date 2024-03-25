@@ -83,6 +83,11 @@ SOURCE_FILES = \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/util\third_party\segger\systemview\SEGGER\SEGGER_RTT.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/platform\base\hal\plugin\debug-jtag\debug-jtag-efr32.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/platform\base\hal\plugin\serial\ember-printf.c \
+../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\end-device-support\end-device-support.c \
+../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\end-device-support\end-device-move.c \
+../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\end-device-support\end-device-support-cli.c \
+../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\end-device-support\polling-common.c \
+../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\end-device-support\polling-soc.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\find-and-bind-target\find-and-bind-target.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\find-and-bind-target\find-and-bind-target-cli.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\groups-server\groups-server.c \

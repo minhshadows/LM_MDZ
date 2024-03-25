@@ -50,6 +50,7 @@ boolean emberAfStackStatusCallback(EmberStatus status)
 				NETWORK_EventHandle(NETWORK_HAS_PARENT);
 			}
 		}
+
 	}
 	else
 	{
@@ -65,7 +66,9 @@ boolean emberAfStackStatusCallback(EmberStatus status)
 		{
 			NETWORK_EventHandle(NETWORK_LOST_PARENT);
 		}
+
 	}
+	emberAfCorePrintln("Stack Status = %d!!!",status);
   return false;
 }
 

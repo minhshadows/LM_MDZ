@@ -184,7 +184,7 @@ boolMap:HandleBindingZdoRequests = false
 boolMap:LegacyCli = false
 boolMap:AddCustomCli = false
 boolMap:IncludeCommandDescriptions = false
-boolMap:GenerateCallbacksFile = false
+boolMap:GenerateCallbacksFile = true
 boolMap:ManufacturerCodeDefaultIsZero = true
 beginAttrList:SAVED_TO_FLASH
   cl:0x0006, at:0x0000, di:server, mf:0x0000
@@ -1466,7 +1466,8 @@ appPlugin:gbcs-device-log,false
 appPlugin:gbcs-gas-meter,false
 appPlugin:gbz-message-controller,false
 appPlugin:general-response-commands,false
-appPlugin:generic-interrupt-control,false
+appPlugin:generic-interrupt-control,true
+
 appPlugin:generic-interrupt-control-stub,false
 appPlugin:glib,false
 appPlugin:gp-library,false

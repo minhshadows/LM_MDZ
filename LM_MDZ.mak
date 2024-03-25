@@ -90,6 +90,7 @@ SOURCE_FILES = \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\end-device-support\polling-soc.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\find-and-bind-target\find-and-bind-target.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\find-and-bind-target\find-and-bind-target-cli.c \
+../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/util\plugin\plugin-common\generic-interrupt-control\generic-interrupt-control-efr32.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\groups-server\groups-server.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol\zigbee\app\framework\plugin\groups-server\groups-server-cli.c \
 ../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/platform\base\hal\micro\cortexm3\efm32\hal-config.c \

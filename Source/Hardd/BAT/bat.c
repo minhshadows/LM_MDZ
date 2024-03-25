@@ -40,16 +40,16 @@ void adc_Initt()
 	adc_struct.srcClkPrescale = (IADC_calcSrcClkPrescale(IADC0, CLK_SRC_ADC_FREQ, 0));
 
 	init_AllConfigs.configs[0].reference 		= iadcCfgReferenceVddx;
-//	init_AllConfigs.configs[0].vRef 			= 1210; 					// Vref
+//	init_AllConfigs.configs[0].vRef 			= 3300; 					// Vref
 //	init_AllConfigs.configs[0].analogGain 		= iadcCfgAnalogGain0P5x;
 
-	init_AllConfigs.configs[0].adcClkPrescale 	= IADC_calcAdcClkPrescale(IADC0,
-																		CLK_ADC_FREQ,
-																		0,
-																		iadcCfgModeNormal,
-																		adc_struct.srcClkPrescale);
+//	init_AllConfigs.configs[0].adcClkPrescale 	= IADC_calcAdcClkPrescale(IADC0,
+//																		CLK_ADC_FREQ,
+//																		0,
+//																		iadcCfgModeNormal,
+//																		adc_struct.srcClkPrescale);
 
-	init_AllConfigs.configs[0].osrHighSpeed = iadcCfgOsrHighSpeed32x;
+//	init_AllConfigs.configs[0].osrHighSpeed = iadcCfgOsrHighSpeed32x;
 
 	init_Single.dataValidLevel = _IADC_SINGLEFIFOCFG_DVL_VALID1;
 

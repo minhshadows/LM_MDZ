@@ -9,9 +9,6 @@
 // Content outside these regions will be preserved.
 
 // $[ACMP0]
-#define PORTIO_ACMP0_POS_PIN                  (4U)
-#define PORTIO_ACMP0_POS_PORT                 (gpioPortC)
-
 // [ACMP0]$
 
 // $[ACMP1]

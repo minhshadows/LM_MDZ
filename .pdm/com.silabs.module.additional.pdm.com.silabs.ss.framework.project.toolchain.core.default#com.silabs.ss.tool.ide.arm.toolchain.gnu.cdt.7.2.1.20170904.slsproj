@@ -37,6 +37,7 @@
   <file name="af-gen-event.h" uri="studio:/project/af-gen-event.h"/>
   <file name="znet-cli.c" uri="studio:/project/znet-cli.c"/>
   <file name="znet-cli.h" uri="studio:/project/znet-cli.h"/>
+  <file name="LM_MDZ_callbacks.c" uri="studio:/project/LM_MDZ_callbacks.c"/>
   <file name="LM_MDZ.h" uri="studio:/project/LM_MDZ.h"/>
   <file name="afv2-bookkeeping.c" uri="studio:/project/afv2-bookkeeping.c"/>
   <file name="LM_MDZ-postbuild.py" uri="studio:/project/LM_MDZ-postbuild.py"/>
