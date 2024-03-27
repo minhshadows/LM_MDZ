@@ -287,3 +287,32 @@ void SEND_humidityValueReport(uint8_t endpoint,uint16_t value)
 									ZCL_INT16S_ATTRIBUTE_TYPE);
 	SEND_SendCommandUnicast(endpoint,1,addressHC);
 }
+
+/**
+ * @func	SEND_BatteryReport
+ *
+ * @brief	Send battery to HC
+ *
+ * @param	[endpoint]:
+ *
+ * @param	[percent]: percent power battery
+ *
+ * @retval	none
+ */
+void SEND_BatteryReport(uint8_t endpoint,uint8_t percent)
+{
+	uint16_t address = 0x0000;
+	emberAfCorePrintln("Report!!!");
+	if(emberAfNetworkState() != EMBER_JOINED_NETWORK)
+	{
+		return;
+	}
+	emberAfWriteServerAttribute(endpoint,
+								ZCL_IAS_ZONE_CLUSTER_ID,
+								ZCL_ZONE_STATUS_ATTRIBUTE_ID,
+								(uint8_t*) &percent,
+								ZCL_BITMAP16_ATTRIBUTE_TYPE);
+	SEND_FillBufferGlobalCommand(ZCL_IAS_ZONE_CLUSTER_ID,ZCL_ZONE_STATUS_ATTRIBUTE_ID,ZCL_READ_ATTRIBUTES_RESPONSE_COMMAND_ID,&percent,1,ZCL_BITMAP16_ATTRIBUTE_TYPE);
+
+	SEND_SendCommandUnicast(endpoint,1,address);
+}

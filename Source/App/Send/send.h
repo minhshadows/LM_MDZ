@@ -22,5 +22,6 @@ void SEND_CommanBinding(uint8_t cmdID, uint8_t indexTable);
 void SEND_PirStateReport(uint8_t endpoint,pirAction_e pirAction);
 void SEND_temperatureValueReport(uint8_t endpoint,uint16_t value);
 void SEND_humidityValueReport(uint8_t endpoint,uint16_t value);
+void SEND_BatteryReport(uint8_t endpoint,uint8_t percent);
 
 #endif /* SOURCE_APP_SEND_SEND_H_ */

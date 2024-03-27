@@ -8,7 +8,7 @@
 
 
 // Fixed number of defined endpoints
-#define FIXED_ENDPOINT_COUNT (4)
+#define FIXED_ENDPOINT_COUNT (5)
 
 
 
@@ -85,6 +85,10 @@ const EmberAfGenericClusterFunction emberAfFuncArrayScenesClusterServer[] = { (E
     { 0x0004, (EmberAfAttributeMetadata*)&(generatedAttributes[7]), 2, 3, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayGroupsClusterServer, },    \
     { 0x0005, (EmberAfAttributeMetadata*)&(generatedAttributes[9]), 6, 8, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION), emberAfFuncArrayScenesClusterServer, },    \
     { 0x0405, (EmberAfAttributeMetadata*)&(generatedAttributes[23]), 4, 8, (CLUSTER_MASK_SERVER), NULL,  },    \
+    { 0x0000, (EmberAfAttributeMetadata*)&(generatedAttributes[0]), 3, 0, (CLUSTER_MASK_SERVER), NULL,  },    \
+    { 0x0003, (EmberAfAttributeMetadata*)&(generatedAttributes[4]), 1, 2, (CLUSTER_MASK_CLIENT), NULL,  },    \
+    { 0x0003, (EmberAfAttributeMetadata*)&(generatedAttributes[5]), 2, 4, (CLUSTER_MASK_SERVER| CLUSTER_MASK_INIT_FUNCTION| CLUSTER_MASK_ATTRIBUTE_CHANGED_FUNCTION), emberAfFuncArrayIdentifyClusterServer, },    \
+    { 0x0500, (EmberAfAttributeMetadata*)&(generatedAttributes[27]), 6, 16, (CLUSTER_MASK_SERVER), NULL,  },    \
   }
 
 
@@ -94,6 +98,7 @@ const EmberAfGenericClusterFunction emberAfFuncArrayScenesClusterServer[] = { (E
     { (EmberAfCluster*)&(generatedClusters[7]), 6, 25 }, \
     { (EmberAfCluster*)&(generatedClusters[13]), 6, 25 }, \
     { (EmberAfCluster*)&(generatedClusters[19]), 6, 25 }, \
+    { (EmberAfCluster*)&(generatedClusters[25]), 4, 22 }, \
   }
 
 
@@ -116,25 +121,25 @@ const EmberAfGenericClusterFunction emberAfFuncArrayScenesClusterServer[] = { (E
 #define ATTRIBUTE_SINGLETONS_SIZE (6)
 
 // Total size of attribute storage
-#define ATTRIBUTE_MAX_SIZE 108
+#define ATTRIBUTE_MAX_SIZE 130
 
 // Array of endpoints that are supported
-#define FIXED_ENDPOINT_ARRAY { 1, 2, 3, 4 }
+#define FIXED_ENDPOINT_ARRAY { 1, 2, 3, 4, 5 }
 
 // Array of profile ids
-#define FIXED_PROFILE_IDS { 260, 260, 260, 260 }
+#define FIXED_PROFILE_IDS { 260, 260, 260, 260, 260 }
 
 // Array of device ids
-#define FIXED_DEVICE_IDS { 1026, 262, 770, 1026 }
+#define FIXED_DEVICE_IDS { 1026, 262, 770, 1026, 1026 }
 
 // Array of device versions
-#define FIXED_DEVICE_VERSIONS { 1, 1, 1, 1 }
+#define FIXED_DEVICE_VERSIONS { 1, 1, 1, 1, 1 }
 
 // Array of endpoint types supported on each endpoint
-#define FIXED_ENDPOINT_TYPES { 0, 1, 2, 3 }
+#define FIXED_ENDPOINT_TYPES { 0, 1, 2, 3, 4 }
 
 // Array of networks supported on each endpoint
-#define FIXED_NETWORKS { 0, 0, 0, 0 }
+#define FIXED_NETWORKS { 0, 0, 0, 0, 0 }
 
 
 #define EMBER_AF_GENERATED_PLUGIN_INIT_FUNCTION_DECLARATIONS \

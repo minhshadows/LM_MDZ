@@ -413,7 +413,8 @@ void TempHumEventHandler()
 	checkTemperatureValue_toSend();
 	checkHumidityValue_toSend();
 	checkLightValue_toSend();
-	Battery_Scan();
+	(void)batteryCalculate();
+//	Battery_Scan();
 	emberAfCorePrintln("--------------------------");
 
 	//Reschedule the event after a delay of 5 seconds
@@ -431,13 +432,15 @@ void TempHumEventHandler()
  */
 void firstSend()
 {
-	uint8_t temperature = (TemHumSensor_getTemperature()/100);
-	uint8_t humidity	= TemHumSensor_getHumidity();
-	uint16_t lux		= OPT3001_GetValue();
+	uint8_t temperature 	= (TemHumSensor_getTemperature()/100);
+	uint8_t humidity		= TemHumSensor_getHumidity();
+	uint16_t lux			= OPT3001_GetValue();
+	uint8_t batteryPercent	= batteryCalculate();
 
 	SEND_temperatureValueReport(TEMPERATURE_ENDPOINT,temperature);
 	SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
 	SEND_measuredValueReport(LIGHTSENSOR_ENDPOINT,lux);
+	SEND_BatteryReport(BATTERY_ENDPOINT,batteryPercent);
 
 	emberAfCorePrintln("first send!!!!");
 	// set up to scan every 5s
@@ -458,13 +461,15 @@ void firstSend()
 void sendAfter30mEventHandle()
 {
 	emberEventControlSetInactive(sendAfter30mEventControl);
-	uint8_t temperature = (TemHumSensor_getTemperature()/100);
-	uint8_t humidity	= TemHumSensor_getHumidity();
-	uint16_t lux		= OPT3001_GetValue();
+	uint8_t temperature 	= (TemHumSensor_getTemperature()/100);
+	uint8_t humidity		= TemHumSensor_getHumidity();
+	uint16_t lux			= OPT3001_GetValue();
+	uint8_t batteryPercent	= batteryCalculate();
 
 	SEND_temperatureValueReport(TEMPERATURE_ENDPOINT,temperature);
 	SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
 	SEND_measuredValueReport(LIGHTSENSOR_ENDPOINT,lux);
+	SEND_BatteryReport(BATTERY_ENDPOINT,batteryPercent);
 
 	emberEventControlSetDelayMinutes(sendAfter30mEventControl,30);
 }
@@ -480,9 +485,10 @@ void sendAfter30mEventHandle()
  */
 void sendEnvir_toHC()
 {
-	uint8_t temperature = (TemHumSensor_getTemperature()/100);
-	uint8_t humidity	= TemHumSensor_getHumidity();
-	uint16_t lux		= OPT3001_GetValue();
+	uint8_t temperature 	= (TemHumSensor_getTemperature()/100);
+	uint8_t humidity		= TemHumSensor_getHumidity();
+	uint16_t lux			= OPT3001_GetValue();
+
 
 	SEND_temperatureValueReport(TEMPERATURE_ENDPOINT,temperature);
 	SEND_humidityValueReport(HUMIDITY_ENDPOINT,humidity);
@@ -493,11 +499,4 @@ void sendEnvir_toHC()
 	luxPrev			= lux ;
 
 	emberAfCorePrintln("Send all to HC");
-}
-
-void Battery_Scan()
-{
-	uint32_t temp =0;
-	temp = read_ADCvalue();
-	emberAfCorePrintln("Battery = %d",temp);
 }

@@ -106,7 +106,7 @@
   "Scan Dispatch Plugin Scan",  \
   "Update TC Link Key Plugin BeginTcLinkKeyUpdate",  \
   "Join network event control",  \
-  "Event data",  \
+  "Led1 toggle event control",  \
   "Main state event control",  \
   "Pir detech event control",  \
   "Send after30m event control",  \

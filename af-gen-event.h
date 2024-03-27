@@ -13,6 +13,7 @@
   EmberEventControl emberAfIdentifyClusterServerTickCallbackControl2; \
   EmberEventControl emberAfIdentifyClusterServerTickCallbackControl3; \
   EmberEventControl emberAfIdentifyClusterServerTickCallbackControl4; \
+  EmberEventControl emberAfIdentifyClusterServerTickCallbackControl5; \
   extern EmberEventControl TempHumEventControl; \
   extern EmberEventControl buttonPressAndHoldEventControl; \
   extern EmberEventControl buttonReleaseEventControl; \
@@ -65,6 +66,7 @@
   void emberAfIdentifyClusterServerTickCallbackWrapperFunction2(void) { clusterTickWrapper(&emberAfIdentifyClusterServerTickCallbackControl2, emberAfIdentifyClusterServerTickCallback, 2); } \
   void emberAfIdentifyClusterServerTickCallbackWrapperFunction3(void) { clusterTickWrapper(&emberAfIdentifyClusterServerTickCallbackControl3, emberAfIdentifyClusterServerTickCallback, 3); } \
   void emberAfIdentifyClusterServerTickCallbackWrapperFunction4(void) { clusterTickWrapper(&emberAfIdentifyClusterServerTickCallbackControl4, emberAfIdentifyClusterServerTickCallback, 4); } \
+  void emberAfIdentifyClusterServerTickCallbackWrapperFunction5(void) { clusterTickWrapper(&emberAfIdentifyClusterServerTickCallbackControl5, emberAfIdentifyClusterServerTickCallback, 5); } \
 
 
 // EmberEventData structs used to populate the EmberEventData table
@@ -73,6 +75,7 @@
   { &emberAfIdentifyClusterServerTickCallbackControl2, emberAfIdentifyClusterServerTickCallbackWrapperFunction2 }, \
   { &emberAfIdentifyClusterServerTickCallbackControl3, emberAfIdentifyClusterServerTickCallbackWrapperFunction3 }, \
   { &emberAfIdentifyClusterServerTickCallbackControl4, emberAfIdentifyClusterServerTickCallbackWrapperFunction4 }, \
+  { &emberAfIdentifyClusterServerTickCallbackControl5, emberAfIdentifyClusterServerTickCallbackWrapperFunction5 }, \
   { &TempHumEventControl, TempHumEventHandler }, \
   { &buttonPressAndHoldEventControl, buttonPressAndHoldEventHandle }, \
   { &buttonReleaseEventControl, buttonReleaseEventHandle }, \
@@ -96,6 +99,7 @@
   "Identify Cluster Server EP 2",  \
   "Identify Cluster Server EP 3",  \
   "Identify Cluster Server EP 4",  \
+  "Identify Cluster Server EP 5",  \
   "Temp hum event control",  \
   "Button press and hold event control",  \
   "Button release event control",  \
@@ -115,13 +119,14 @@
 
 
 // The length of the event context table used to track and retrieve cluster events
-#define EMBER_AF_EVENT_CONTEXT_LENGTH 4
+#define EMBER_AF_EVENT_CONTEXT_LENGTH 5
 
 // EmberAfEventContext structs used to populate the EmberAfEventContext table
 #define EMBER_AF_GENERATED_EVENT_CONTEXT { 0x1, 0x3, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfIdentifyClusterServerTickCallbackControl1}, \
 { 0x2, 0x3, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfIdentifyClusterServerTickCallbackControl2}, \
 { 0x3, 0x3, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfIdentifyClusterServerTickCallbackControl3}, \
-{ 0x4, 0x3, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfIdentifyClusterServerTickCallbackControl4}
+{ 0x4, 0x3, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfIdentifyClusterServerTickCallbackControl4}, \
+{ 0x5, 0x3, false, EMBER_AF_LONG_POLL, EMBER_AF_OK_TO_SLEEP, &emberAfIdentifyClusterServerTickCallbackControl5}
 
 
 #endif // __AF_GEN_EVENT__

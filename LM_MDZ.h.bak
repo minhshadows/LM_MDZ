@@ -226,6 +226,9 @@
 // User options for plugin Find and Bind Target
 #define EMBER_AF_PLUGIN_FIND_AND_BIND_TARGET_COMMISSIONING_TIME 180
 
+// Use this macro to check if Generic GPIO Interrupt Controller plugin is included
+#define EMBER_AF_PLUGIN_GENERIC_INTERRUPT_CONTROL
+
 // Use this macro to check if Groups Server Cluster plugin is included
 #define EMBER_AF_PLUGIN_GROUPS_SERVER
 
@@ -364,6 +367,9 @@
 
 // API find-and-bind-target from Find and Bind Target plugin
 #define EMBER_AF_API_FIND_AND_BIND_TARGET "../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol/zigbee/app/framework/plugin/find-and-bind-target/find-and-bind-target.h"
+
+// API generic-interrupt-control from Generic GPIO Interrupt Controller plugin
+#define EMBER_AF_API_GENERIC_INTERRUPT_CONTROL "../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/util/plugin/plugin-common/generic-interrupt-control/generic-interrupt-control.h"
 
 // API network-steering from Network Steering plugin
 #define EMBER_AF_API_NETWORK_STEERING "../../../../../SiliconLabs/SimplicityStudio/v4/developer/sdks/gecko_sdk_suite/v2.7/protocol/zigbee/app/framework/plugin/network-steering/network-steering.h"

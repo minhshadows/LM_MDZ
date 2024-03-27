@@ -33,5 +33,6 @@
 
 void adc_Initt();
 uint32_t read_ADCvalue();
+uint8_t batteryCalculate();
 
 #endif /* SOURCE_HARDD_BAT_BAT_H_ */

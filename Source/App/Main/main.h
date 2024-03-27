@@ -27,6 +27,7 @@
 #define LIGHTSENSOR_ENDPOINT			2
 #define TEMPERATURE_ENDPOINT			3
 #define HUMIDITY_ENDPOINT				4
+#define BATTERY_ENDPOINT				5
 
 typedef enum
 {
