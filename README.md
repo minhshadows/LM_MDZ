@@ -1,7 +1,6 @@
 ## Giới thiệu dự án
 
-mô phỏng lại [cảm biến](https://support.lumi.vn/vi/cam-bien/huongdansudung/Cam-bien-chuyen-dong-V2/zigbee) chuyển động của Lumi
-
+Dự án [cảm biến](https://support.lumi.vn/vi/cam-bien/huongdansudung/Cam-bien-chuyen-dong-V2/zigbee) chuyển động
 ## thiết bị cho dự án
 
 bộ điều khiển trung tâm của Lumi
@@ -10,7 +9,7 @@ cảm biến chuyển động của Lumi
 
 ## Tính năng của thiết bị
 
-khi thiết bị được cấp nguồn hoặc thiết bị được reset ( nhấn nhanh nút 5 lần) thì thiết bị sẽ tìm mạng nếu có mạng thì thông tin môi trường sẽ được gửi lên HC( bộ điều khiển trung tâm).
+khi thiết bị được cấp nguồn hoặc thiết bị được reset( nhấn nhanh nút 5 lần) thì thiết bị sẽ tìm mạng nếu có mạng thì thông tin môi trường sẽ được gửi lên HC( bộ điều khiển trung tâm).
 
 khi nhiệt độ thay đổi >= 2 độ thì sẽ cập nhật lên HC.
 
