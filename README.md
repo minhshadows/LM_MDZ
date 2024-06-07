@@ -16,7 +16,7 @@ Dự án này tập trung vào việc phát triển các tính năng phát hiệ
 Video demo
 ## Hướng dẫn cài đặt
 
-Bạn có thể tìm thấy hướng dẫn chi tiết về cách cài đặt và triển khai dự án trong thư mục Instructions module 2in 2out. Xin vui lòng tham khảo tài liệu này để bắt đầu.
+Bạn có thể tìm thấy hướng dẫn chi tiết về cách cài đặt và triển khai dự án trong thư mục Instructions sensor. Xin vui lòng tham khảo tài liệu này để bắt đầu.
 
 ## License
 
